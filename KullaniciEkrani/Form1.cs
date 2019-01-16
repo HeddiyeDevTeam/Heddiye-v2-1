@@ -23,5 +23,15 @@ namespace KullaniciEkrani
             adminLogin.Show();
             this.Hide();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if ((cmbCinsiyet.Text=="Kadın")|| ( cmbCinsiyet.Text=="Erkek"))
+            {
+                MessageBox.Show("boşdeğil");
+
+            }
+            else { MessageBox.Show("boş"); }
+        }
     }
 }

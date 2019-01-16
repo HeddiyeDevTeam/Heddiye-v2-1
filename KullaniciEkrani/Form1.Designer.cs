@@ -49,6 +49,9 @@
             // 
             this.cmbCinsiyet.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.cmbCinsiyet.FormattingEnabled = true;
+            this.cmbCinsiyet.Items.AddRange(new object[] {
+            "Kadın",
+            "Erkek"});
             this.cmbCinsiyet.Location = new System.Drawing.Point(6, 68);
             this.cmbCinsiyet.Name = "cmbCinsiyet";
             this.cmbCinsiyet.Size = new System.Drawing.Size(262, 27);
@@ -107,6 +110,7 @@
             this.button1.TabIndex = 5;
             this.button1.Text = "LİSTELE";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // cmbBurc
             // 
