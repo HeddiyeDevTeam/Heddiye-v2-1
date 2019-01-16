@@ -20,10 +20,12 @@ namespace BLL
 
         public string UrunEkle( string cadi)
         {
-            string d;
+  //string d ifadesi silindi. @Erkan          
             CinsiyetTablo u = new CinsiyetTablo();
             u.CinsiyetAdi = cadi;
             dal.deneme(u);
+//return cadi ifadesi eklendi. @Erkan
+            return cadi;
           
         }
     }
