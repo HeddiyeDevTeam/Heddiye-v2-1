@@ -45,6 +45,7 @@ namespace KullaniciEkrani
             // VeriTabanindaki Yas Araligini Combobox'3 e Ekler
             var GelenYasAraligi = con.Query<YasAraligiTablo>("select * from YasAraligi");
             comboBox3.DataSource = GelenYasAraligi;
+            
             comboBox3.DisplayMember = "YasAraligi";
             comboBox3.ValueMember = "YasId";
 

@@ -50,13 +50,13 @@
             this.cmbCinsiyet.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.cmbCinsiyet.FormattingEnabled = true;
             this.cmbCinsiyet.Items.AddRange(new object[] {
-            "Kadın",
-            "Erkek"});
+            "Cinsiyeti?"});
             this.cmbCinsiyet.Location = new System.Drawing.Point(6, 68);
             this.cmbCinsiyet.Name = "cmbCinsiyet";
             this.cmbCinsiyet.Size = new System.Drawing.Size(262, 27);
             this.cmbCinsiyet.TabIndex = 0;
             this.cmbCinsiyet.Text = "Cinsiyeti?";
+            this.cmbCinsiyet.SelectedIndexChanged += new System.EventHandler(this.cmbCinsiyet_SelectedIndexChanged);
             // 
             // groupBox1
             // 
@@ -173,7 +173,6 @@
             // 
             // btnadmin
             // 
-            this.btnadmin.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.btnadmin.Location = new System.Drawing.Point(12, 12);
             this.btnadmin.Name = "btnadmin";
             this.btnadmin.Size = new System.Drawing.Size(75, 28);
@@ -193,6 +192,7 @@
             this.Controls.Add(this.libUrunler);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
