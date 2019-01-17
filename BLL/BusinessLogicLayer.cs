@@ -23,16 +23,26 @@ namespace BLL
             int UrunKontrol = 0;
 
             Urunler u = new Urunler();
-            u.UrunAdi = UrunAdi;
-            u.CinsiyetAdi = CinsiyetAdi;
-            u.HediyeAmaci = HediyeAmaci;
-            u.YakinlikDerecesi = YakinlikDerecesi;
-            u.YasAraligi = YasAraligi;
-            u.BurcAdi = BurcAdi;
-            if (dal.UrunEkle(u) > 0)
+            if (!string.IsNullOrEmpty(UrunAdi))
             {
-                UrunKontrol = 1;
+                u.UrunAdi = UrunAdi;
+                u.CinsiyetAdi = CinsiyetAdi;
+                u.HediyeAmaci = HediyeAmaci;
+                u.YakinlikDerecesi = YakinlikDerecesi;
+                u.YasAraligi = YasAraligi;
+                u.BurcAdi = BurcAdi;
+
+                if (dal.UrunEkle(u) > 0)
+                {
+                    UrunKontrol = 1;
+                }
             }
+            else
+            {
+                UrunKontrol = 0;
+            }
+           
+            
 
             return UrunKontrol;
         }

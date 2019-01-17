@@ -35,12 +35,7 @@ namespace KullaniciEkrani
             //libUrunler.DataSource = bll.UrunEkle(cmbCinsiyet.Text);
 
 
-            //if ((cmbCinsiyet.Text=="Kadın")|| ( cmbCinsiyet.Text=="Erkek"))
-            //{
-            //    MessageBox.Show("deneme");
-
-            //}
-            //else { MessageBox.Show("boş"); }
+           
         }
 
         private void Form1_Load(object sender, EventArgs e)
