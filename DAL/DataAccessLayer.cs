@@ -20,11 +20,10 @@ namespace DAL
 
         static string adress = "Data Source=.;Initial Catalog=Heddiye;Integrated Security=True";
         
-        SqlDataAdapter adap;
-        DataSet ds;
-        DataTable dt;
-        public void UrunEkle(Urunler u)
+        public int UrunEkle(Urunler u)
         {
+            string sqlsorgu = ""
+            int SorguKontrol = 0;
             string adress = "Data Source=.;Initial Catalog=Heddiye;Integrated Security=True";
              con = new SqlConnection(adress);
 
@@ -38,25 +37,14 @@ namespace DAL
                     YasAraligii = u.YasAraligi,
                     Burcadii = u.BurcAdi
                 }, commandType: CommandType.StoredProcedure);
+            if (query.Count() > 0)
+            {
+                SorguKontrol = 1;
+            }
+
+            return SorguKontrol;
 
         }
-        public void deneme(CinsiyetTablo c)
-        {
-
-           var acb = con.Query<CinsiyetTablo>("Select * from Cinsiyet Where CinsiyetAdi = @id", new { @id = c.CinsiyetAdi });
-
-            
-        }
-
-        public DataSet Cinsiyet()
-        {
-            dt = new DataTable();
-            adap = new SqlDataAdapter("Select * from Cinsiyet", con);
-            ds.Tables.Add("Cinsiyet");
-            adap.Fill(ds.Tables[0]);
-
-            return ds;
-        }
-
+        
     }
 }

@@ -18,15 +18,23 @@ namespace BLL
             dal = new DataAccessLayer();
         }
 
-        public string UrunEkle( string cadi)
+        public int UrunKontrol(string UrunAdi,string CinsiyetAdi,string HediyeAmaci,string YakinlikDerecesi, string YasAraligi,string BurcAdi)
         {
-  //string d ifadesi silindi. @Erkan          
-            CinsiyetTablo u = new CinsiyetTablo();
-            u.CinsiyetAdi = cadi;
-            dal.deneme(u);
-//return cadi ifadesi eklendi. @Erkan
-            return cadi;
-          
+            int UrunKontrol = 0;
+
+            Urunler u = new Urunler();
+            u.UrunAdi = UrunAdi;
+            u.CinsiyetAdi = CinsiyetAdi;
+            u.HediyeAmaci = HediyeAmaci;
+            u.YakinlikDerecesi = YakinlikDerecesi;
+            u.YasAraligi = YasAraligi;
+            u.BurcAdi = BurcAdi;
+            if (dal.UrunEkle(u) > 0)
+            {
+                UrunKontrol = 1;
+            }
+
+            return UrunKontrol;
         }
     }
 }

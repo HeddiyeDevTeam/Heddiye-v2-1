@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using DAL.Tablo_Sınıfları;
 using Dapper;
 using DAL;
+using BLL;
 
 
 namespace KullaniciEkrani
@@ -22,7 +23,7 @@ namespace KullaniciEkrani
         {
             InitializeComponent();
         }
-
+        BusinessLogicLayer bll = new BusinessLogicLayer();
         SqlConnection con;
         private void UrunGirisEkrani_Load(object sender, EventArgs e)
         {
@@ -74,22 +75,12 @@ namespace KullaniciEkrani
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Urunler urun = new Urunler();
-                urun.UrunAdi = textBox1.Text;
-                urun.CinsiyetAdi = comboBox1.Text;
-                urun.HediyeAmaci = comboBox2.Text;
-                urun.YakinlikDerecesi = comboBox4.Text;
-                urun.YasAraligi = comboBox3.Text;
-                urun.BurcAdi = comboBox5.Text;
+            int Ukontrol = 0;
+            Ukontrol = bll.UrunKontrol(textBox1.Text, comboBox1.Text, comboBox2.Text, comboBox4.Text, comboBox3.Text, comboBox5.Text);
 
-                urun.UrunEkle(urun);
-                MessageBox.Show("kayıt eklendi");
-            }
-            catch (Exception)
+            if (Ukontrol > 0)
             {
-                MessageBox.Show("kayıt eklenmedi");
+                MessageBox.Show("UrunEklendi");
             }
           
         }
