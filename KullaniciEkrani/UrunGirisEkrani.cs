@@ -82,6 +82,10 @@ namespace KullaniciEkrani
             {
                 MessageBox.Show("UrunEklendi");
             }
+            else
+            {
+                MessageBox.Show("Urun Eklenemedi!!");
+            }
           
         }
     }
