@@ -15,13 +15,17 @@ using BLL;
 namespace KullaniciEkrani
 {
     public partial class Form1 : Form
-    { BusinessLogicLayer bll;
+    {
+        BusinessLogicLayer bll;
+
         public Form1()
         {
             InitializeComponent();
         }
         DataAccessLayer dal;
         SqlConnection con;
+        
+        
         private void btnadmin_Click(object sender, EventArgs e)
         {
             AdminLogin adminLogin = new AdminLogin();
@@ -31,16 +35,19 @@ namespace KullaniciEkrani
         
         private void button1_Click(object sender, EventArgs e)
         {
-            //bll = new BusinessLogicLayer();
-            //libUrunler.DataSource = bll.UrunEkle(cmbCinsiyet.Text);
+            bll = new BusinessLogicLayer();
+            DataTable dt;
+       dt= bll.ULComboControl(cmbCinsiyet.Text, cmbYasAraligi.Text, cmbBurc.Text, cmbHediyeAmac.Text, cmbYakinlikDerecesi.Text);
+            libUrunler.DataSource = dt;
 
 
-           
+
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
             
             string adress = "Data Source=.;Initial Catalog=Heddiye;Integrated Security=True";
 

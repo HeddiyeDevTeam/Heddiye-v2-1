@@ -12,6 +12,7 @@ namespace DAL
 {
     public class DataAccessLayer
     {
+        DataTable dt;
         SqlConnection con;
         public DataAccessLayer()
         {
@@ -19,16 +20,16 @@ namespace DAL
         }
 
         static string adress = "Data Source=.;Initial Catalog=Heddiye;Integrated Security=True";
-        
+
         public int UrunEkle(Urunler u)
         {
-            
-            int SorguKontrol = 0;
-            
-            string adress = "Data Source=.;Initial Catalog=Heddiye;Integrated Security=True";
-             con = new SqlConnection(adress);
 
-            
+            int SorguKontrol = 0;
+
+            string adress = "Data Source=.;Initial Catalog=Heddiye;Integrated Security=True";
+            con = new SqlConnection(adress);
+
+
 
             SorguKontrol = con.Execute("SP_UrunEkle", new
             {
@@ -51,6 +52,47 @@ namespace DAL
             return SorguKontrol;
 
         }
-        
+        public DataTable UrunListele(Urunler u)
+        {
+
+            try
+            {
+                DataTable dt = new DataTable();
+                DataSet ds = new DataSet();
+                con = new SqlConnection(adress);
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "UrunListele";
+                cmd.Parameters.AddWithValue("@CinsiyetAdi", u.CinsiyetAdi);
+                cmd.Parameters.AddWithValue("@HediyeAmacAdi", u.HediyeAmaci);
+                cmd.Parameters.AddWithValue("@YakinlikDerecesi", u.YakinlikDerecesi);
+                cmd.Parameters.AddWithValue("@Yas", u.YasAraligi);
+                cmd.Parameters.AddWithValue("@Burc", u.BurcAdi);
+                SqlDataReader dr = cmd.ExecuteReader();
+                dt.Load(dr);
+                dt = ds.Tables[1];
+
+                
+
+
+            }
+
+            catch (Exception ex)
+            {
+
+                ex.ToString();
+            }
+            finally
+            {
+                con.Close();
+
+            }
+            return dt;
+
+
+        }
+
     }
 }
