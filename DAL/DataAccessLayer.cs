@@ -77,7 +77,7 @@ namespace DAL
                 dap.Fill(ds);
 
                 //dt = ds.Tables[0];
-                int x = 0;
+                //int x = 0;
                 
 
 
@@ -96,6 +96,26 @@ namespace DAL
             return ds.Tables[0];
 
 
+        }
+
+
+        public int AdminBilgileriSorgula(AdminTablo adminTablo)
+        {
+            
+            con = new SqlConnection(adress);
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+            con.Open();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "Select * from Admin where email = @email and sifre = @sifre";
+            cmd.Parameters.AddWithValue("@email",adminTablo.Email);
+            cmd.Parameters.AddWithValue("@sifre", adminTablo.Sifre);
+            int sonuc = cmd.ExecuteNonQuery();
+            
+            con.Close();
+
+            
+            return sonuc;
         }
 
     }

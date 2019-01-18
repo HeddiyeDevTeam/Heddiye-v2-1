@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="DataAccessLayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tablo Sınıfları\AdminTablo.cs" />
     <Compile Include="Tablo Sınıfları\BurcTablo.cs" />
     <Compile Include="Tablo Sınıfları\CinsiyetTablo.cs" />
     <Compile Include="Tablo Sınıfları\Urunler.cs" />

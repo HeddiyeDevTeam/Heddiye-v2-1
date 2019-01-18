@@ -16,29 +16,35 @@ namespace KullaniciEkrani
 {
     public partial class Form1 : Form
     {
-        BusinessLogicLayer bll;
+       
 
         public Form1()
         {
             InitializeComponent();
         }
+        // Diğer Sınıflardan nesnelerimiz tanımlandı.
+        BusinessLogicLayer bll;
         DataAccessLayer dal;
         SqlConnection con;
         
         
         private void btnadmin_Click(object sender, EventArgs e)
         {
+            // Admin Login Sayfamız için bir nesne oluşturduk.
             AdminLogin adminLogin = new AdminLogin();
+            // oluşan nesne gösterildi şuanki form gizlendi.
             adminLogin.Show();
             this.Hide();
         }
         
         private void button1_Click(object sender, EventArgs e)
         {
+            //BusinessLogicLayer sınıfından nesnemizi new ettik.
             bll = new BusinessLogicLayer();
             DataTable dt;
-            
-       dt= bll.ULComboControl(cmbCinsiyet.Text, cmbYasAraligi.Text, cmbBurc.Text, cmbHediyeAmac.Text, cmbYakinlikDerecesi.Text);
+            // bll sınıfındaki ULCombo kontrol fonksiyonu cağırıldı gelen datatable yeni oluşturaln data
+            // tableye atıldı
+            dt= bll.ULComboControl(cmbCinsiyet.Text, cmbYasAraligi.Text, cmbBurc.Text, cmbHediyeAmac.Text, cmbYakinlikDerecesi.Text);
             libUrunler.DataSource = dt;
             libUrunler.DisplayMember = "UrunAdi";
             libUrunler.ValueMember = "UrunId";

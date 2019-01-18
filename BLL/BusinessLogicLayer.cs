@@ -64,6 +64,7 @@ namespace BLL
                 u.BurcAdi = Burcadi;
                 u.HediyeAmaci = HediyeAmacAdi;
                 u.YakinlikDerecesi = YakinlikDerecesiDegeri;
+
                  d = dal.UrunListele(u);
              
                 
@@ -79,7 +80,26 @@ namespace BLL
 
         //    return diablo;
         //}
+        public int AdminBoslukKontrol(string email, string sifre)
+        {
+            int a;
+            //Admin login sayfasında e-mail ve şifre için boşluk kontrolü
+            if (!string.IsNullOrEmpty(email)&&!string.IsNullOrEmpty(sifre))
+            {
+                AdminTablo admt = new AdminTablo();
+                admt.Email = email;
+                admt.Sifre = sifre;
+                a = dal.AdminBilgileriSorgula(admt);
 
+            }
+            else
+            {
+                a = 0;
+            }
+
+            return a;
+           
+        }
 
     }
 }

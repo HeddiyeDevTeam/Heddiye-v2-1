@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL;
 
 namespace KullaniciEkrani
 {
     public partial class AdminLogin : Form
     {
+        BusinessLogicLayer bll;
         public AdminLogin()
         {
             InitializeComponent();
@@ -19,9 +21,20 @@ namespace KullaniciEkrani
 
         private void button1_Click(object sender, EventArgs e)
         {
-            UrunGirisEkrani urunGirisEkrani = new UrunGirisEkrani();
-            urunGirisEkrani.Show();
-            this.Hide();
+            
+            int deg;
+            bll = new BusinessLogicLayer();
+            deg = bll.AdminBoslukKontrol(textBox1.Text, textBox2.Text);
+            if (deg>0)
+            {
+                UrunGirisEkrani urunGirisEkrani = new UrunGirisEkrani();
+                urunGirisEkrani.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Ercan hocam siz misiniz?");
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
