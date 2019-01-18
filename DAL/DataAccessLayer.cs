@@ -46,7 +46,7 @@ namespace DAL
             }
             //if ( ((System.Collections.Generic.List<DAL.Tablo_Sınıfları.Urunler>)query).Count>=0)
             //{
-            //    SorguKontrol = 1;
+            //    SorguKontrol = 1;;
             //}
 
             return SorguKontrol;
