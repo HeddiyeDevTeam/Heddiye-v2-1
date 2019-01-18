@@ -54,11 +54,12 @@ namespace DAL
         }
         public DataTable UrunListele(Urunler u)
         {
-
+                 DataTable dt = new DataTable();
+                DataSet ds = new DataSet();
             try
             {
-                DataTable dt = new DataTable();
-                DataSet ds = new DataSet();
+              
+               
                 con = new SqlConnection(adress);
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
@@ -70,10 +71,13 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@YakinlikDerecesi", u.YakinlikDerecesi);
                 cmd.Parameters.AddWithValue("@Yas", u.YasAraligi);
                 cmd.Parameters.AddWithValue("@Burc", u.BurcAdi);
+                SqlDataAdapter dap = new SqlDataAdapter(cmd);
                 SqlDataReader dr = cmd.ExecuteReader();
                 dt.Load(dr);
-                dt = ds.Tables[1];
+                dap.Fill(ds);
 
+                //dt = ds.Tables[0];
+                int x = 0;
                 
 
 
@@ -89,7 +93,7 @@ namespace DAL
                 con.Close();
 
             }
-            return dt;
+            return ds.Tables[0];
 
 
         }

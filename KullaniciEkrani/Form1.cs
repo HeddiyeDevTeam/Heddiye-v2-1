@@ -37,8 +37,11 @@ namespace KullaniciEkrani
         {
             bll = new BusinessLogicLayer();
             DataTable dt;
+            
        dt= bll.ULComboControl(cmbCinsiyet.Text, cmbYasAraligi.Text, cmbBurc.Text, cmbHediyeAmac.Text, cmbYakinlikDerecesi.Text);
             libUrunler.DataSource = dt;
+            libUrunler.DisplayMember = "UrunAdi";
+            libUrunler.ValueMember = "UrunId";
 
 
 
