@@ -43,5 +43,10 @@ namespace KullaniciEkrani
             anaform.Show();
             this.Hide();
         }
+
+        private void AdminLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

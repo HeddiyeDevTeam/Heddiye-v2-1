@@ -98,24 +98,27 @@ namespace DAL
 
         }
 
-
         public int AdminBilgileriSorgula(AdminTablo adminTablo)
         {
-            
+            string email, sifre;
+            int sorgu = 0;
+            email = adminTablo.Email;
+            sifre = adminTablo.Sifre;
             con = new SqlConnection(adress);
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
             con.Open();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "Select * from Admin where email = @email and sifre = @sifre";
-            cmd.Parameters.AddWithValue("@email",adminTablo.Email);
-            cmd.Parameters.AddWithValue("@sifre", adminTablo.Sifre);
-            int sonuc = cmd.ExecuteNonQuery();
-            
+            cmd.CommandText = "select count(*) from Admin where email = '" + email + "' and sifre = '" + sifre + "'";
+            var sonuc = cmd.ExecuteScalar();
+            if (Convert.ToInt32(sonuc)>0)
+            {
+                sorgu = 1;
+            }
             con.Close();
 
             
-            return sonuc;
+            return sorgu;
         }
 
     }

@@ -138,6 +138,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "AdminLogin";
             this.Text = "AdminLogin";
+            this.Load += new System.EventHandler(this.AdminLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
