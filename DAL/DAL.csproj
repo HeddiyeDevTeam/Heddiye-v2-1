@@ -49,6 +49,7 @@
     <Compile Include="Tablo Sınıfları\AdminTablo.cs" />
     <Compile Include="Tablo Sınıfları\BurcTablo.cs" />
     <Compile Include="Tablo Sınıfları\CinsiyetTablo.cs" />
+    <Compile Include="Tablo Sınıfları\HataLog.cs" />
     <Compile Include="Tablo Sınıfları\Urunler.cs" />
     <Compile Include="Tablo Sınıfları\YakinlikDerecesiTablo.cs" />
     <Compile Include="Tablo Sınıfları\HediyeAmaciTablo.cs" />

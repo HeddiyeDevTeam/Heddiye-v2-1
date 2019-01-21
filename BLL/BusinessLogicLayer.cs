@@ -32,6 +32,7 @@ namespace BLL
                 u.YakinlikDerecesi = YakinlikDerecesi;
                 u.YasAraligi = YasAraligi;
                 u.BurcAdi = BurcAdi;
+              
 
                 if (dal.UrunEkle(u) > 0)
                 {
@@ -100,6 +101,9 @@ namespace BLL
             return a;
            
         }
-
+        public void HataGonder()
+        {
+            dal.HataGonder();
+        }
     }
 }

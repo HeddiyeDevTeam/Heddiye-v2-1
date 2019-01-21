@@ -42,12 +42,22 @@ namespace KullaniciEkrani
             //BusinessLogicLayer sınıfından nesnemizi new ettik.
             bll = new BusinessLogicLayer();
             DataTable dt;
+            try
+            {
+                dt = bll.ULComboControl(cmbCinsiyet.Text, cmbYasAraligi.Text, cmbBurc.Text, cmbHediyeAmac.Text, cmbYakinlikDerecesi.Text);
+                libUrunler.DataSource = dt;
+                libUrunler.DisplayMember = "UrunAdi";
+                libUrunler.ValueMember = "UrunId";
+            }
+            catch (Exception)
+            {
+
+                bll.HataGonder();
+                MessageBox.Show("Seçtiğiniz bilgilere ait ürün bilgiler bulunmamaktadır. ");
+            }
             // bll sınıfındaki ULCombo kontrol fonksiyonu cağırıldı gelen datatable yeni oluşturaln data
             // tableye atıldı
-            dt= bll.ULComboControl(cmbCinsiyet.Text, cmbYasAraligi.Text, cmbBurc.Text, cmbHediyeAmac.Text, cmbYakinlikDerecesi.Text);
-            libUrunler.DataSource = dt;
-            libUrunler.DisplayMember = "UrunAdi";
-            libUrunler.ValueMember = "UrunId";
+           
 
 
 
@@ -58,7 +68,7 @@ namespace KullaniciEkrani
         {
             
             
-            string adress = "Data Source=.;Initial Catalog=Heddiye;Integrated Security=True";
+            string adress = "Data Source=.\\SQLEXPRESS;Initial Catalog=Heddiye;Integrated Security=True";
 
             con = new SqlConnection(adress);
 

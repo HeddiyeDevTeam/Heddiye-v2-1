@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using System.Diagnostics;
+using System.IO;
 
 namespace DAL
 {
@@ -19,14 +21,14 @@ namespace DAL
             con = new SqlConnection(adress);
         }
 
-        static string adress = "Data Source=.;Initial Catalog=Heddiye;Integrated Security=True";
+        static string adress = "Data Source=.\\SQLEXPRESS;Initial Catalog=Heddiye;Integrated Security=True";
 
         public int UrunEkle(Urunler u)
         {
 
             int SorguKontrol = 0;
 
-            string adress = "Data Source=.;Initial Catalog=Heddiye;Integrated Security=True";
+            string adress = "Data Source=.\\SQLEXPRESS;Initial Catalog=Heddiye;Integrated Security=True";
             con = new SqlConnection(adress);
 
 
@@ -54,12 +56,12 @@ namespace DAL
         }
         public DataTable UrunListele(Urunler u)
         {
-                 DataTable dt = new DataTable();
-                DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+            DataSet ds = new DataSet();
             try
             {
-              
-               
+
+
                 con = new SqlConnection(adress);
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
@@ -78,7 +80,7 @@ namespace DAL
 
                 //dt = ds.Tables[0];
                 //int x = 0;
-                
+
 
 
             }
@@ -111,15 +113,47 @@ namespace DAL
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "select count(*) from Admin where email = '" + email + "' and sifre = '" + sifre + "'";
             var sonuc = cmd.ExecuteScalar();
-            if (Convert.ToInt32(sonuc)>0)
+            if (Convert.ToInt32(sonuc) > 0)
             {
                 sorgu = 1;
             }
             con.Close();
 
-            
+
             return sorgu;
         }
 
+        public void HataGonder()
+        {
+            con = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=Heddiye;Integrated Security=True");
+
+
+            //Hatanın satır numarasına erişme için true değeri veriliyor.
+            StackTrace st = new StackTrace(true);
+
+            foreach (StackFrame frame in st.GetFrames())
+
+            {
+                string path3 = @"C:\Users\www\Source\Repos\Heddiye-v2-13\HProgram.cs";
+                string result;
+                result = Path.GetFileName(path3).Split(Path.DirectorySeparatorChar).Last();
+
+
+                if (!string.IsNullOrEmpty(frame.GetFileName()))
+                {
+                    con.Execute("insert into HataLoglari (DosyaAdi,MethodAdi,LineNumber,ColumnNumber,message) values (@DosyaAdi,@MethodAdi,@LineNumber,@ColumnNumber,@message)", new
+                    {
+                        @DosyaAdi = result,
+                        @MethodAdi = frame.GetMethod().ToString(),
+                        @LineNumber = frame.GetFileLineNumber(),
+                        @ColumnNumber = frame.GetFileColumnNumber(),
+                        @message = ""
+                    });
+
+
+                }
+
+            }
+        }
     }
 }
