@@ -101,9 +101,9 @@ namespace BLL
             return a;
            
         }
-        public void HataGonder()
+        public void HataGonder(HataLog ex)
         {
-            dal.HataGonder();
+            dal.HataGonder(ex);
         }
     }
 }

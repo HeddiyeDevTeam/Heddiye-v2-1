@@ -123,7 +123,7 @@ namespace DAL
             return sorgu;
         }
 
-        public void HataGonder()
+        public void HataGonder(HataLog h)
         {
             con = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=Heddiye;Integrated Security=True");
 
@@ -147,7 +147,7 @@ namespace DAL
                         @MethodAdi = frame.GetMethod().ToString(),
                         @LineNumber = frame.GetFileLineNumber(),
                         @ColumnNumber = frame.GetFileColumnNumber(),
-                        @message = ""
+                        @message =h.message
                     });
 
 

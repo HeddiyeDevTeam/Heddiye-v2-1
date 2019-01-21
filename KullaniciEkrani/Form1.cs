@@ -49,10 +49,11 @@ namespace KullaniciEkrani
                 libUrunler.DisplayMember = "UrunAdi";
                 libUrunler.ValueMember = "UrunId";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                bll.HataGonder();
+                HataLog h = new HataLog();
+                h.message = ex.StackTrace;
+                bll.HataGonder(h);
                 MessageBox.Show("Seçtiğiniz bilgilere ait ürün bilgiler bulunmamaktadır. ");
             }
             // bll sınıfındaki ULCombo kontrol fonksiyonu cağırıldı gelen datatable yeni oluşturaln data
