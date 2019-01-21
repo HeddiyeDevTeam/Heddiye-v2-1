@@ -73,14 +73,7 @@ namespace BLL
             return d;
         }
 
-        //public DataTable DBListesindenUrunAl()
-        //{
-
-            
-        //    DataTable diablo = dal.UrunListele();
-
-        //    return diablo;
-        //}
+       
         public int AdminBoslukKontrol(string email, string sifre)
         {
             int a;
@@ -102,7 +95,7 @@ namespace BLL
            
         }
         public void HataGonder(HataLog ex)
-        {
+        {  //hatalogunu dataaccesslayerdan alarak form ekranında kullanmak için bu method yazıldı.
             dal.HataGonder(ex);
         }
     }

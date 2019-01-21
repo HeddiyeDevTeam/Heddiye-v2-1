@@ -122,7 +122,7 @@ namespace DAL
 
             return sorgu;
         }
-
+        //Hata kontrolünü bu alanda yapıyoruz.
         public void HataGonder(HataLog h)
         {
             con = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=Heddiye;Integrated Security=True");

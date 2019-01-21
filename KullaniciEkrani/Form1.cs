@@ -51,6 +51,7 @@ namespace KullaniciEkrani
             }
             catch (Exception ex)
             {
+                //oluşan hataları database gönderir
                 HataLog h = new HataLog();
                 h.message = ex.StackTrace;
                 bll.HataGonder(h);
@@ -59,9 +60,7 @@ namespace KullaniciEkrani
             // bll sınıfındaki ULCombo kontrol fonksiyonu cağırıldı gelen datatable yeni oluşturaln data
             // tableye atıldı
            
-
-
-
+  
 
         }
 
