@@ -16,6 +16,7 @@ namespace DAL.Tablo_Sınıfları
         public string YakinlikDerecesi { get; set; }
         public string YasAraligi { get; set; }
         public string BurcAdi { get; set; }
+        public string Link { get; set; }
         public void UrunEkle(Urunler u)
         {
             string adress = "Data Source=.;Initial Catalog=Heddiye;Integrated Security=True";

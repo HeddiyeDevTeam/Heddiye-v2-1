@@ -19,7 +19,7 @@ namespace BLL
             dal = new DataAccessLayer();
         }
 
-        public int UrunKontrol(string UrunAdi,string CinsiyetAdi,string HediyeAmaci,string YakinlikDerecesi, string YasAraligi,string BurcAdi)
+        public int UrunKontrol(string UrunAdi,string CinsiyetAdi,string HediyeAmaci,string YakinlikDerecesi, string YasAraligi,string BurcAdi,string link)
         {
             int UrunKontrol = 0;
 
@@ -32,6 +32,8 @@ namespace BLL
                 u.YakinlikDerecesi = YakinlikDerecesi;
                 u.YasAraligi = YasAraligi;
                 u.BurcAdi = BurcAdi;
+                u.Link = link;
+                
               
 
                 if (dal.UrunEkle(u) > 0)

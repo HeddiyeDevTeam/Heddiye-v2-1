@@ -76,7 +76,7 @@ namespace KullaniciEkrani
         private void button1_Click(object sender, EventArgs e)
         {
             int Ukontrol = 0;
-            Ukontrol = bll.UrunKontrol(textBox1.Text, comboBox1.Text, comboBox2.Text, comboBox4.Text, comboBox3.Text, comboBox5.Text);
+            Ukontrol = bll.UrunKontrol(textBox1.Text, comboBox1.Text, comboBox2.Text, comboBox4.Text, comboBox3.Text, comboBox5.Text,textBox2.Text);
 
             if (Ukontrol > 0)
             {

@@ -16,22 +16,20 @@ namespace DAL
     {
         DataTable dt;
         SqlConnection con;
+
         public DataAccessLayer()
         {
             con = new SqlConnection(adress);
         }
 
-        static string adress = "Data Source=.\\SQLEXPRESS;Initial Catalog=Heddiye;Integrated Security=True";
+        string adress = "Data Source=.;Initial Catalog=Heddiye;Integrated Security=True";
 
         public int UrunEkle(Urunler u)
         {
 
             int SorguKontrol = 0;
 
-            string adress = "Data Source=.\\SQLEXPRESS;Initial Catalog=Heddiye;Integrated Security=True";
             con = new SqlConnection(adress);
-
-
 
             SorguKontrol = con.Execute("SP_UrunEkle", new
             {
@@ -40,7 +38,8 @@ namespace DAL
                 HediyeAmacii = u.HediyeAmaci,
                 YakinlikDerecesii = u.YakinlikDerecesi,
                 YasAraligii = u.YasAraligi,
-                Burcadii = u.BurcAdi
+                Burcadii = u.BurcAdi,
+                Link = u.Link
             }, commandType: CommandType.StoredProcedure);
             if (SorguKontrol > 0)
             {
@@ -54,14 +53,13 @@ namespace DAL
             return SorguKontrol;
 
         }
+
         public DataTable UrunListele(Urunler u)
         {
             DataTable dt = new DataTable();
             DataSet ds = new DataSet();
             try
             {
-
-
                 con = new SqlConnection(adress);
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
@@ -122,10 +120,11 @@ namespace DAL
 
             return sorgu;
         }
+
         //Hata kontrolünü bu alanda yapıyoruz.
         public void HataGonder(HataLog h)
         {
-            con = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=Heddiye;Integrated Security=True");
+            con = new SqlConnection(adress);
 
 
             //Hatanın satır numarasına erişme için true değeri veriliyor.
@@ -155,5 +154,7 @@ namespace DAL
 
             }
         }
+
+        
     }
 }
