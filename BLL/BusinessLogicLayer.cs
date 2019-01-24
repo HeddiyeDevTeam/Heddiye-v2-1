@@ -111,5 +111,12 @@ namespace BLL
             }
             return link;
         }
+        public DataSet getCombo()
+        {
+            dal = new DataAccessLayer();
+            DataSet ds = dal.ComboGet();
+            return ds;
+
+        }
     }
 }

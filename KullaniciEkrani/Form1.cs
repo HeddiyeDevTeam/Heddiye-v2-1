@@ -70,14 +70,17 @@ namespace KullaniciEkrani
         {
             
             
-            string adress = "Data Source=.;Initial Catalog=Heddiye;Integrated Security=True";
+            string adress = "Data Source=.\\SQLEXPRESS;Initial Catalog=Heddiye;Integrated Security=True";
 
             con = new SqlConnection(adress);
+            DataSet set = new DataSet();
+
 
             // VeriTabanindaki Cinsiyetleri Combobox1'a Ekler
-            var GelenCinsiyet = con.Query<CinsiyetTablo>("Select * from Cinsiyet");
-            
-            cmbCinsiyet.DataSource = GelenCinsiyet;
+       
+            bll = new BusinessLogicLayer();
+            DataSet ds = bll.getCombo();
+            cmbCinsiyet.DataSource = ds.Tables[0];
             
             cmbCinsiyet.DisplayMember = "CinsiyetAdi";
             cmbCinsiyet.ValueMember = "CinsiyetId";
@@ -95,8 +98,8 @@ namespace KullaniciEkrani
             cmbYasAraligi.ValueMember = "YasId";
 
             // VeriTabanindaki Burclari Combobox5'e Ekler
-            var GelenBurc = con.Query<BurcTablo>("select * from Burc");
-            cmbBurc.DataSource = GelenBurc;
+            //var GelenBurc = con.Query<BurcTablo>("select * from Burc");
+            cmbBurc.DataSource = ds.Tables[1];
             cmbBurc.DisplayMember = "BurcAdi";
             cmbBurc.ValueMember = "BurcId";
         }
@@ -105,10 +108,10 @@ namespace KullaniciEkrani
         {
             int CId = cmbCinsiyet.SelectedIndex + 1;
 
-            var YakinlikDerecesi = con.Query<YakinlikDerecesiTablo>("Select * from YakinlikDerecesi where CinsiyetId = @CinsiyetId", new { @CinsiyetId = CId });
+            //var YakinlikDerecesi = con.Query<YakinlikDerecesiTablo>("Select * from YakinlikDerecesi where CinsiyetId = @CinsiyetId", new { @CinsiyetId = CId });
 
-
-            cmbYakinlikDerecesi.DataSource = YakinlikDerecesi;
+            DataSet ds = bll.getCombo();
+            cmbYakinlikDerecesi.DataSource = ds.Tables[4];
             cmbYakinlikDerecesi.DisplayMember = "YakinlikDerecesi";
             cmbYakinlikDerecesi.ValueMember = "YakinlikId";
         }

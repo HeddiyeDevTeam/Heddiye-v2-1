@@ -16,13 +16,14 @@ namespace DAL
     {
         DataTable dt;
         SqlConnection con;
+        DataSet ds;
 
         public DataAccessLayer()
         {
             con = new SqlConnection(adress);
         }
 
-        string adress = "Data Source=.;Initial Catalog=Heddiye;Integrated Security=True";
+        string adress = "Data Source=.\\SQLEXPRESS;Initial Catalog=Heddiye;Integrated Security=True";
 
         public int UrunEkle(Urunler u)
         {
@@ -171,6 +172,22 @@ namespace DAL
             con.Close();
             
             return link;
+        }
+        public DataSet ComboGet()
+        {
+            con = new SqlConnection(adress);
+            Urunler u = new Urunler();
+            SqlCommand cmd = new SqlCommand("Select * from Cinsiyet;Select * from Burc;Select * from HediyeAmaci;" +
+                "Select * from YasAraligi;Select * from YakinlikDerecesi  where CinsiyetId = @CinsiyetId", con);
+            con.Open();
+            SqlDataAdapter adp = new SqlDataAdapter(cmd);
+            adp.SelectCommand.Parameters.AddWithValue("@CinsiyetId", 1);
+            ds = new DataSet();
+            adp.Fill(ds);
+            con.Close();
+            return ds;
+
+
         }
     }
 }

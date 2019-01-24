@@ -27,7 +27,7 @@ namespace KullaniciEkrani
         SqlConnection con;
         private void UrunGirisEkrani_Load(object sender, EventArgs e)
         {
-            string adress = "Data Source=.;Initial Catalog=Heddiye;Integrated Security=True";
+            string adress = "Data Source=.\\SQLEXPRESS;Initial Catalog=Heddiye;Integrated Security=True";
 
             con = new SqlConnection(adress);
 
@@ -87,6 +87,13 @@ namespace KullaniciEkrani
                 MessageBox.Show("Urun Eklenemedi!!");
             }
           
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form1 form = new Form1();
+            form.Show();
+            this.Hide();
         }
     }
 }
