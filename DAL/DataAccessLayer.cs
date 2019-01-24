@@ -155,6 +155,22 @@ namespace DAL
             }
         }
 
-        
+        public string GetLinkData(int ID)
+        {
+            string link = "";
+            con = new SqlConnection(adress);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("Select * from Urunler where UrunId = @ID",con);
+            cmd.Parameters.AddWithValue("@ID", ID);
+            
+            SqlDataReader rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                link = rdr["Link"].ToString();
+            }
+            con.Close();
+            
+            return link;
+        }
     }
 }

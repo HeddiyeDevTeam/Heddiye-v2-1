@@ -12,6 +12,8 @@ using System.Windows.Forms;
 using Dapper;
 using DAL;
 using BLL;
+using System.Diagnostics;
+
 namespace KullaniciEkrani
 {
     public partial class Form1 : Form
@@ -109,6 +111,15 @@ namespace KullaniciEkrani
             cmbYakinlikDerecesi.DataSource = YakinlikDerecesi;
             cmbYakinlikDerecesi.DisplayMember = "YakinlikDerecesi";
             cmbYakinlikDerecesi.ValueMember = "YakinlikId";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show(libUrunler.SelectedValue.ToString());
+            int ID = (int)libUrunler.SelectedValue;
+            bll = new BusinessLogicLayer();
+            string link = bll.GetLinkAccess(ID);
+            Process.Start(link);
         }
     }
 }

@@ -100,5 +100,16 @@ namespace BLL
         {  //hatalogunu dataaccesslayerdan alarak form ekranında kullanmak için bu method yazıldı.
             dal.HataGonder(ex);
         }
+
+        public string GetLinkAccess(int ID)
+        {
+            string link = "";
+            if (ID> 0)
+            {
+                dal = new DataAccessLayer();
+                link = dal.GetLinkData(ID);
+            }
+            return link;
+        }
     }
 }
