@@ -108,7 +108,7 @@ namespace KullaniciEkrani
         {
             int CId = cmbCinsiyet.SelectedIndex + 1;
 
-            //var YakinlikDerecesi = con.Query<YakinlikDerecesiTablo>("Select * from YakinlikDerecesi where CinsiyetId = @CinsiyetId", new { @CinsiyetId = CId });
+            //var YakinlikDerecesi = con.Query<YakinlikDerecesiTablo>("Select ** from YakinlikDerecesi where CinsiyetId = @CinsiyetId", new { @CinsiyetId = CId });
 
             DataSet ds = bll.getCombo();
             cmbYakinlikDerecesi.DataSource = ds.Tables[4];
