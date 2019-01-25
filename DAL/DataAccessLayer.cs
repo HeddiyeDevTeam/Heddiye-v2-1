@@ -80,8 +80,6 @@ namespace DAL
                 //dt = ds.Tables[0];
                 //int x = 0;
 
-
-
             }
 
             catch (Exception ex)
@@ -178,12 +176,31 @@ namespace DAL
             con = new SqlConnection(adress);
             Urunler u = new Urunler();
             SqlCommand cmd = new SqlCommand("Select * from Cinsiyet;Select * from Burc;Select * from HediyeAmaci;" +
-                "Select * from YasAraligi;Select * from YakinlikDerecesi  where CinsiyetId = @CinsiyetId", con);
+                "Select * from YasAraligi;" , con);
             con.Open();
             SqlDataAdapter adp = new SqlDataAdapter(cmd);
-            adp.SelectCommand.Parameters.AddWithValue("@CinsiyetId", 1);
+           
+
             ds = new DataSet();
             adp.Fill(ds);
+            con.Close();
+            return ds;
+
+
+        }
+        public DataSet getYakinlikDerecesi(int id)
+        {
+            con = new SqlConnection(adress);
+            YakinlikDerecesiTablo y = new YakinlikDerecesiTablo();
+            SqlCommand cmd = new SqlCommand("Select * from YakinlikDerecesi where CinsiyetId = @CinsiyetId" , con);
+            cmd.Parameters.AddWithValue("@CinsiyetId",id);
+            con.Open();
+            SqlDataAdapter adp = new SqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+            ds = new DataSet();
+            adp.Fill(ds);
+           
             con.Close();
             return ds;
 

@@ -11,6 +11,7 @@ namespace DAL.Tablo_Sınıfları
     public class Urunler
     {
         public int UrunId { get; set; }
+        public int CinsiyetId { get; set; }
         public string UrunAdi { get; set; }
         public string CinsiyetAdi { get; set; }
         public string HediyeAmaci { get; set; }

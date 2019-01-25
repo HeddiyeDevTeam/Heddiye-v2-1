@@ -118,5 +118,12 @@ namespace BLL
             return ds;
 
         }
+        public DataSet getYakinlik(int id)
+        {
+            dal = new DataAccessLayer();
+            DataSet ds = dal.getYakinlikDerecesi(id);
+            return ds;
+
+        }
     }
 }

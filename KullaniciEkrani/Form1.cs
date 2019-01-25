@@ -86,14 +86,14 @@ namespace KullaniciEkrani
             cmbCinsiyet.ValueMember = "CinsiyetId";
             cmbCinsiyet.Text = "Cinsiyet?";
             // VeriTabanindaki Hediye Amaclarini Combobox2'a Ekler
-            var GelenHediyeAmaci = con.Query<HediyeAmaciTablo>("Select * from HediyeAmaci");
-            cmbHediyeAmac.DataSource = GelenHediyeAmaci;
+           // var GelenHediyeAmaci = con.Query<HediyeAmaciTablo>("Select * from HediyeAmaci");
+            cmbHediyeAmac.DataSource = ds.Tables[2];
             cmbHediyeAmac.DisplayMember = "HediyeAmaci";
             cmbHediyeAmac.ValueMember = "HediyeAmacId";
             cmbHediyeAmac.Text = "Hediye";
             // VeriTabanindaki Yas Araligini Combobox'3 e Ekler
-            var GelenYasAraligi = con.Query<YasAraligiTablo>("select * from YasAraligi");
-            cmbYasAraligi.DataSource = GelenYasAraligi;
+            //var GelenYasAraligi = con.Query<YasAraligiTablo>("select * from YasAraligi");
+            cmbYasAraligi.DataSource = ds.Tables[3];
             cmbYasAraligi.DisplayMember = "YasAraligi";
             cmbYasAraligi.ValueMember = "YasId";
 
@@ -110,10 +110,11 @@ namespace KullaniciEkrani
 
             //var YakinlikDerecesi = con.Query<YakinlikDerecesiTablo>("Select ** from YakinlikDerecesi where CinsiyetId = @CinsiyetId", new { @CinsiyetId = CId });
 
-            DataSet ds = bll.getCombo();
-            cmbYakinlikDerecesi.DataSource = ds.Tables[4];
+            DataSet ds = bll.getYakinlik(CId);
+            cmbYakinlikDerecesi.DataSource = ds.Tables[0];
             cmbYakinlikDerecesi.DisplayMember = "YakinlikDerecesi";
             cmbYakinlikDerecesi.ValueMember = "YakinlikId";
+            cmbYakinlikDerecesi.Text = "Yakınlık Dereceniz Nedir?";
         }
 
         private void button2_Click(object sender, EventArgs e)
