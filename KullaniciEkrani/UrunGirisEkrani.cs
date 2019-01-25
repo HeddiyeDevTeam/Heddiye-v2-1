@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL.Tablo_Sınıfları;
 using Dapper;
-using DAL;
 using BLL;
 
 
@@ -27,32 +26,33 @@ namespace KullaniciEkrani
         SqlConnection con;
         private void UrunGirisEkrani_Load(object sender, EventArgs e)
         {
-            string adress = "Data Source=.\\SQLEXPRESS;Initial Catalog=Heddiye;Integrated Security=True";
+            //string adress = "Data Source=.\\SQLEXPRESS;Initial Catalog=Heddiye;Integrated Security=True";
 
-            con = new SqlConnection(adress);
+            //con = new SqlConnection(adress);
 
             // VeriTabanindaki Cinsiyetleri Combobox1'a Ekler
-            var GelenCinsiyet = con.Query<CinsiyetTablo>("Select * from Cinsiyet");
-            comboBox1.DataSource = GelenCinsiyet;
+            // var GelenCinsiyet = con.Query<CinsiyetTablo>("Select * from Cinsiyet");
+            DataSet ds = bll.getCombo();
+            comboBox1.DataSource = ds.Tables[0];
             comboBox1.DisplayMember = "CinsiyetAdi";
             comboBox1.ValueMember = "CinsiyetId";
 
             // VeriTabanindaki Hediye Amaclarini Combobox2'a Ekler
-            var GelenHediyeAmaci = con.Query<HediyeAmaciTablo>("Select * from HediyeAmaci");
-            comboBox2.DataSource = GelenHediyeAmaci;
+          //  var GelenHediyeAmaci = con.Query<HediyeAmaciTablo>("Select * from HediyeAmaci");
+            comboBox2.DataSource = ds.Tables[2];
             comboBox2.DisplayMember = "HediyeAmaci";
             comboBox2.ValueMember = "HediyeAmacId";
 
             // VeriTabanindaki Yas Araligini Combobox'3 e Ekler
-            var GelenYasAraligi = con.Query<YasAraligiTablo>("select * from YasAraligi");
-            comboBox3.DataSource = GelenYasAraligi;
+           // var GelenYasAraligi = con.Query<YasAraligiTablo>("select * from YasAraligi");
+            comboBox3.DataSource = ds.Tables[3];
             
             comboBox3.DisplayMember = "YasAraligi";
             comboBox3.ValueMember = "YasId";
 
             // VeriTabanindaki Burclari Combobox5'e Ekler
-            var GelenBurc = con.Query<BurcTablo>("select * from Burc");
-            comboBox5.DataSource = GelenBurc;
+            //var GelenBurc = con.Query<BurcTablo>("select * from Burc");
+            comboBox5.DataSource = ds.Tables[1];
             comboBox5.DisplayMember = "BurcAdi";
             comboBox5.ValueMember = "BurcId";
 
@@ -64,11 +64,11 @@ namespace KullaniciEkrani
             // VeriTabanindaki Yakinlik Derecesini Combobox4'a Ekler
 
             int CId = comboBox1.SelectedIndex + 1;
-           
-            var YakinlikDerecesi = con.Query<YakinlikDerecesiTablo>("Select * from YakinlikDerecesi where CinsiyetId = @CinsiyetId", new { @CinsiyetId = CId });
 
+            // var YakinlikDerecesi = con.Query<YakinlikDerecesiTablo>("Select * from YakinlikDerecesi where CinsiyetId = @CinsiyetId", new { @CinsiyetId = CId });
 
-            comboBox4.DataSource = YakinlikDerecesi;
+            DataSet ds = bll.getYakinlik(CId);
+            comboBox4.DataSource = ds.Tables[0];
             comboBox4.DisplayMember = "YakinlikDerecesi";
             comboBox4.ValueMember = "YakinlikId";
         }

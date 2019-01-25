@@ -18,7 +18,6 @@ namespace BLL
         {
             dal = new DataAccessLayer();
         }
-
         public int UrunKontrol(string UrunAdi,string CinsiyetAdi,string HediyeAmaci,string YakinlikDerecesi, string YasAraligi,string BurcAdi,string link)
         {
             int UrunKontrol = 0;
@@ -50,10 +49,7 @@ namespace BLL
 
             return UrunKontrol;
         }
-
-
         //Ürün Listelemede yer alan Comboboxlarda herhangi bir seçim olup olmadığının kontrolü.
- 
         public DataTable ULComboControl(string Cinsiyetadi, string YasAraligiDegeri, string Burcadi, string HediyeAmacAdi, string YakinlikDerecesiDegeri)
         {
             DataTable d = new DataTable();
@@ -74,8 +70,6 @@ namespace BLL
             }
             return d;
         }
-
-       
         public int AdminBoslukKontrol(string email, string sifre)
         {
             int a;
@@ -100,7 +94,6 @@ namespace BLL
         {  //hatalogunu dataaccesslayerdan alarak form ekranında kullanmak için bu method yazıldı.
             dal.HataGonder(ex);
         }
-
         public string GetLinkAccess(int ID)
         {
             string link = "";

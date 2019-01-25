@@ -28,8 +28,7 @@ namespace KullaniciEkrani
         BusinessLogicLayer bll;
         DataAccessLayer dal;
         SqlConnection con;
-        
-        
+      
         private void btnadmin_Click(object sender, EventArgs e)
         {
             // Admin Login Sayfamız için bir nesne oluşturduk.
@@ -62,22 +61,12 @@ namespace KullaniciEkrani
             // bll sınıfındaki ULCombo kontrol fonksiyonu cağırıldı gelen datatable yeni oluşturaln data
             // tableye atıldı
            
-  
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
-            
-            string adress = "Data Source=.\\SQLEXPRESS;Initial Catalog=Heddiye;Integrated Security=True";
-
-            con = new SqlConnection(adress);
-            DataSet set = new DataSet();
-
-
             // VeriTabanindaki Cinsiyetleri Combobox1'a Ekler
-       
+     
             bll = new BusinessLogicLayer();
             DataSet ds = bll.getCombo();
             cmbCinsiyet.DataSource = ds.Tables[0];

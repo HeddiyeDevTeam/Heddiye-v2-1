@@ -93,8 +93,6 @@ namespace DAL
 
             }
             return ds.Tables[0];
-
-
         }
 
         public int AdminBilgileriSorgula(AdminTablo adminTablo)
@@ -115,8 +113,6 @@ namespace DAL
                 sorgu = 1;
             }
             con.Close();
-
-
             return sorgu;
         }
 
@@ -179,14 +175,10 @@ namespace DAL
                 "Select * from YasAraligi;" , con);
             con.Open();
             SqlDataAdapter adp = new SqlDataAdapter(cmd);
-           
-
             ds = new DataSet();
             adp.Fill(ds);
             con.Close();
             return ds;
-
-
         }
         public DataSet getYakinlikDerecesi(int id)
         {
@@ -195,11 +187,8 @@ namespace DAL
             cmd.Parameters.AddWithValue("@CinsiyetId",id);
             con.Open();
             SqlDataAdapter adp = new SqlDataAdapter(cmd);
-
-            DataTable dt = new DataTable();
             ds = new DataSet();
             adp.Fill(ds);
-           
             con.Close();
             return ds;
 
