@@ -191,7 +191,6 @@ namespace DAL
         public DataSet getYakinlikDerecesi(int id)
         {
             con = new SqlConnection(adress);
-            YakinlikDerecesiTablo y = new YakinlikDerecesiTablo();
             SqlCommand cmd = new SqlCommand("Select * from YakinlikDerecesi where CinsiyetId = @CinsiyetId" , con);
             cmd.Parameters.AddWithValue("@CinsiyetId",id);
             con.Open();
